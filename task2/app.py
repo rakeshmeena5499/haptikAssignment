@@ -3,7 +3,6 @@ from flask_restful import Resource, Api
 import sqlite3
 import hashlib
 import datetime, json
-import bcrypt
 
 app = Flask(__name__)
 api = Api(app)
@@ -23,6 +22,8 @@ c.execute('''CREATE TABLE If NOT EXISTS tweets
 def user():
     return render_template('user.html')
 
+def hash_password(password):
+    return hashlib.sha256(password.encode()).hexdigest()
 
 @app.route('/', methods=['POST']) 
 def signup():
@@ -40,10 +41,10 @@ def signup():
         return render_template('user.html', data=error_message)
 
     # Insert user into the database
+    password_hash = hash_password(paswd)
     insert_query = "INSERT INTO users (firstname, lastname, username, email, password) VALUES (?, ?, ?, ?, ?)"
-    c.execute(insert_query, (fname, lname, usrnm, email, paswd))
+    c.execute(insert_query, (fname, lname, usrnm, email, password_hash))
     session['username'] = usrnm
-    # Render the insert_tweet.html template with the username as a parameter
     return render_template('insert_tweet.html', usrnm=usrnm)
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -51,7 +52,8 @@ def login():
     if request.method == 'POST':
         usrnm = request.form['usrnm']
         paswd = request.form['paswd']
-        user = c.execute("SELECT * FROM users WHERE username = ? and password = ?", (usrnm, paswd)).fetchone()
+        password_hash = hash_password(paswd)
+        user = c.execute("SELECT * FROM users WHERE username = ? and password = ?", (usrnm, password_hash)).fetchone()
         if user is None:
             error_msg = "Invalid username or password"
             return render_template('login.html', error=error_msg)
@@ -75,7 +77,7 @@ def tweet():
     timestamp = datetime.datetime.now()
     usrnm = session.get('username')
     c.execute("INSERT INTO tweets (tweet_id, tweet_content, created_at, user_name) VALUES (?, ?, ?, ?)", (hex_dig, content, timestamp, usrnm))
-    return render_template('insert_tweet.html', data = "Tweet Inserted Successfully", usrnm=usrnm)
+    return render_template('insert_tweet.html', data = "Tweet Sent Successfully", usrnm=usrnm)
 
 
 @app.route("/tweets", methods=["GET", "POST"]) #get all tweets from database

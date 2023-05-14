@@ -12,11 +12,7 @@ def most_active_user(chats_file):
 				users[line.split(':')[0]] = 1
 
 	sorted_dict = dict(sorted(users.items(), key=lambda x: x[1], reverse=True))
-	ans_dict = {k: sorted_dict[k] for k in list(sorted_dict)[:3]}
-	ans = []
-	for user, count in ans_dict.items():
-		ans.append(user[1:-1])
+	ans = [user[1:-1] for user in list(sorted_dict)[:3]]
 	return ans
-
 
 print("Most Active Users from the given group chat are:", most_active_user('chats.txt'))

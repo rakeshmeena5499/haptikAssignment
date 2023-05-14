@@ -1,0 +1,24 @@
+1)  To build this platform, I've used Python with Flask as the web framework. I've used SQLite as the database since the application is very simple replica with couple of functionalities, so it doesn't require a lot of data storage, and SQLite is lightweight and easy to use.
+
+
+2) The schema for the database would be as follows:
+
+    USERS TABLE:
+        id: INTEGER PRIMARY KEY
+        firstname: TEXT
+        lastname: TEXT
+        username: TEXT
+        password: TEXT
+        email: TEXT
+
+    TWEETS TABLE:
+        id: INTEGER PRIMARY KEY
+        tweet_id: TEXT
+        tweet_content: TEXT
+        created_at: DATE
+        user_name: TEXT
+
+3) The API function that returns all tweets for a specific user is implemented in the app itself
+
+
+4) The system I have built can scale up to a certain level depending on the resources available. Since SQLite is lightweight and doesn't require much setup, it can handle a decent amount of traffic. However, as traffic increases, SQLite may not be the best choice. Additionally, the system may start to fail if the database becomes too large and requires more resources to handle requests. To avoid this, I would switch to a more robust database management system like MySQL or PostgreSQL.

@@ -10,12 +10,10 @@ def can_create(list_of_strings, input_string):
 		for j in range(0, len(list_of_strings)):
 			if(i!=j):
 				possible_perms.append(list_of_strings[i]+list_of_strings[j])
-
 	if input_string in possible_perms:
 		return True
 	else:
 		return False
-
 
 list_of_strings = ['back', 'end', 'front', 'tree']
 print(can_create(list_of_strings, 'backend'))
