@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Users:
+{% endblock %}
+
+{% block main %}
+    <div class= "row" style="margin: 55px;">
+    <h3>List of Users:</h1>
+            <br>
+            <br>
+        </h3>
+    </div>
+
+	<div class= "row" style="margin: 55px;">
+            <table class="table table-bordered">
+            	<thead>
+                    <tr>
+            		<td><b>First Name</b></td>
+            		<td><b>Last Name</b></td>
+            		<td><b>Username</b></td>
+                    </tr>
+            	</thead>
+                <tbody>
+                {% for u in users %}
+                <tr>
+                    <td>{{u.firstname}}</td>
+                    <td>{{u.lastname}}</td>
+                    <td>{{u.username}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+    </div>
+
+{% endblock %}

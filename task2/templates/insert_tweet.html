@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    : Post Your Tweets
+{% endblock %}
+
+{% block main %}
+	<h3 style="margin-left: 55px;">Welcome, {{usrnm}}</h3>
+	<div style="position: absolute; top: 15px; right: 15px;">
+		<a href="/logout" class="btn btn-danger">Logout</a>
+	</div>
+	<form method="POST" action="/insert">
+		<div>	
+			<div id = "box" class="panel panel-default col-md-12">
+      			<div class="panel-body">
+	    			<textarea id="tweet" name="tweet" cols="40" rows="3" class="tweetbox"></textarea>
+
+	    		</div>
+	    	</div>
+	    </div>
+			<button class="btn btn-info" type="submit" style="margin-left: 55px;">Tweet</button>
+			<button class="btn btn-info" type="button" style="margin-left: 55px;" onclick="window.location.href='/tweets'">Show Tweets</button>
+	</form>
+	<div style="margin: 55px; color:#60cfff;">
+		<h4>{{data}}</h4>
+	</div>
+	
+{% endblock %}

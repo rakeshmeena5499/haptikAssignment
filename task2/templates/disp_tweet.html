@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Recent Tweets:
+{% endblock %}
+
+{% block main %}
+    <div class= "row" style="margin: 55px;">
+    <h3>List of Tweets:</h1>
+            <br>
+            <br>
+        </h3>
+    </div>
+
+	<div class= "row" style="margin: 55px;">
+            <table class="table table-bordered">
+            	<thead>
+                    <tr>
+            		<td><b>Tweet</b></td>
+            		<td><b>Tweet Id</b></td>
+            		<td><b>Timestamp</b></td>
+                    <td><b>Username</b></td>
+                    </tr>
+            	</thead>
+                <tbody>
+                {% for t in tweets %}
+                <tr>
+                    <td>{{t.tweet_content}}</td>
+                    <td>{{t.tweet_id}}</td>
+                    <td>{{t.timestamp}}</td>
+                    <td>{{t.user_name}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+    </div>
+
+{% endblock %}

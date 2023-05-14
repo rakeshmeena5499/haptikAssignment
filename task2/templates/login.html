@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{% endblock %}
+{% block main %}
+	<form method="POST">
+		<div class="container">
+
+			<div id = "box" class="panel panel-default col-md-12">
+				<h2 style="margin-left: 55px; margin-top: 20px;">Login:</h2>
+      			<div class="panel-body" style="margin-left:55px;">
+      				<br>
+					<label for="usrnm">Enter Username</label>
+	    			<input type="text" id="usrnm" name="usrnm" placeholder="Username" required>
+	    			<br>
+	    			<label for="password">Enter Password</label>
+	    			<input type="password" id="password" name="paswd" placeholder="Password" required>
+	    		</div>
+	    	</div>
+	    	<button class="btn btn-info" type="submit" style="margin-left: 70px; margin-top: 30px">Login</button>
+	    </div>
+			
+	</form>
+		<div style="margin: 30px; color:#bc1f00;">
+			<h4>{{error}}</h4>
+		</div>
+	</div>
+{% endblock %}
