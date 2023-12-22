@@ -35,8 +35,7 @@ def signup():
 
     # Check if username already exists in the database
     user_query = c.execute("SELECT username from users WHERE username=?", (usrnm,))
-    user = user_query.fetchone()
-    if user:
+    if user := user_query.fetchone():
         error_message = "Username already exists"
         return render_template('user.html', data=error_message)
 
